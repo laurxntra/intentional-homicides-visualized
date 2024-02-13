@@ -74,13 +74,13 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
     var mouseover = function(d) {
     var subgroupName = d3.select(this.parentNode).datum().key;
     var subgroupValue = d.data[subgroupName];
-    d3.selectAll(".myRect").style("opacity", 0.2)
+    d3.selectAll(".bar").style("opacity", 0.2)
     d3.selectAll("."+subgroupName)
       .style("opacity", 1)
     }
 
   var mouseleave = function(d) {
-    d3.selectAll(".myRect")
+    d3.selectAll(".bar")
       .style("opacity",0.8)
     }
 
