@@ -33,3 +33,23 @@ h1 {
 a {
   text-decoration: none;
 }
+
+.bar {
+  fill-opacity: 0.8;
+}
+
+.bar:hover {
+  fill-opacity: 1;
+}
+
+.male-bar {
+  fill: #89CFF0;
+}
+
+.female-bar {
+  fill: "#FF69B4";
+}
+
+.chart-container {
+  transform: translate(220px, 20px);
+}
