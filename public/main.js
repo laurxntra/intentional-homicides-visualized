@@ -41,6 +41,7 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
         .domain(category)
         .range(["#89CFF0","#FF69B4" , "#5D3FD3"]);
 
+    // Adds tooltip    
     var tooltip = d3.select("#chart")
       .append("div")
       .style("opacity", 0)
@@ -52,20 +53,28 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
       .style("padding", "10px");
 
     var mouseover = function(d) {
+      tooltip
+        .style("opacity", 1)
+      d3.select(this)
+        .style("stroke", "black")
+        .style("opacity", 1)
+    };
+
+    var mousemove = function(d) {
       var subgroupName = d3.select(this.parentNode).datum().key;
       var subgroupValue = d.data[subgroupName];
       tooltip
-          .html("subgroup: " + subgroupName + "<br>" + "Value: " + subgroupValue)
-          .style("opacity", 1)
-    };
-    var mousemove = function(d) {
-      tooltip
+        .html("subgroup: " + subgroupName + "<br>" + "Value: " + subgroupValue)
         .style("left", (d3.mouse(this)[0]+90) + "px") 
         .style("top", (d3.mouse(this)[1]) + "px")
     };
+
     var mouseleave = function(d) {
       tooltip
         .style("opacity", 0)
+      d3.select(this)
+        .style("stroke", "none")
+        .style("opacity", 0.8)
     };
 
     // Creates the actual group bar chart
