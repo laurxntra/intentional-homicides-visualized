@@ -1,3 +1,4 @@
+console.log("Add your visualizations here!");
 // Display of the visual bar chart
 const width = 800;
 const height = 500;
@@ -41,41 +42,39 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
         .domain(category)
         .range(["#89CFF0","#FF69B4" , "#5D3FD3"]);
 
-    // Adds tooltip    
-    var tooltip = d3.select("#chart")
+    // create a tooltip
+    var Tooltip = d3.select("#div_template")
       .append("div")
       .style("opacity", 0)
       .attr("class", "tooltip")
       .style("background-color", "white")
       .style("border", "solid")
-      .style("border-width", "1px")
+      .style("border-width", "2px")
       .style("border-radius", "5px")
-      .style("padding", "10px");
+      .style("padding", "4px")
 
     var mouseover = function(d) {
-      tooltip
+      Tooltip
         .style("opacity", 1)
       d3.select(this)
         .style("stroke", "black")
         .style("opacity", 1)
-    };
+    }
 
     var mousemove = function(d) {
-      var subgroupName = d3.select(this.parentNode).datum().key;
-      var subgroupValue = d.data[subgroupName];
-      tooltip
-        .html("subgroup: " + subgroupName + "<br>" + "Value: " + subgroupValue)
-        .style("left", (d3.mouse(this)[0]+90) + "px") 
+      Tooltip
+        .html("The exact value of<br>this cell is: " + d.value)
+        .style("left", (d3.mouse(this)[0]+70) + "px")
         .style("top", (d3.mouse(this)[1]) + "px")
-    };
+    }
 
     var mouseleave = function(d) {
-      tooltip
+      Tooltip
         .style("opacity", 0)
       d3.select(this)
         .style("stroke", "none")
         .style("opacity", 0.8)
-    };
+    }
 
     // Creates the actual group bar chart
     svg.selectAll(".bar")
@@ -93,23 +92,24 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
         })
         .enter()
         .append("rect")
-        .attr("class", "bar")
-        .attr("x", function(d) {
-          return xAxis.bandwidth() / category.length * category.indexOf(d.key);
-        })
-        .attr("y", function(d) {
-          return yAxis(d.value);
-        })
-        .attr("width", xAxis.bandwidth() / category.length)
-        .attr("height", function(d) {
-          return height - yAxis(d.value);
-        })
-        .attr("fill", function(d) {
-          return colors(d.key);
-        })
-      .on("mouseover", mouseover)
-      .on("mousemove", mousemove)
-      .on("mouseleave", mouseleave)});
+          .attr("class", "bar")
+          .attr("x", function(d) {
+            return xAxis.bandwidth() / category.length * category.indexOf(d.key);
+          })
+          .attr("y", function(d) {
+            return yAxis(d.value);
+          })
+          .attr("width", xAxis.bandwidth() / category.length)
+          .attr("height", function(d) {
+            return height - yAxis(d.value);
+          })
+          .attr("fill", function(d) {
+            return colors(d.key);
+          })
+        .on("mouseover", mouseover)
+        .on("mousemove", mousemove)
+        .on("mouseleave", mouseleave)
+        
 
     svg.append("g")
         .attr("transform", "translate(0," + height + ")")
@@ -168,6 +168,6 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
           return d;
         });
 
-// }).catch(function(error) {
-//     console.error("Error loading CSV file:", error);
-// });
+}).catch(function(error) {
+    console.error("Error loading CSV file:", error);
+});
