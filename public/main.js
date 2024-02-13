@@ -82,8 +82,8 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
           .attr('x', (a) => xScale(a.language))
           .attr('width', xScale.bandwidth())
 
-        //chart.selectAll('#limit').remove()
-        //chart.selectAll('.divergence').remove()
+        chart.selectAll('#limit').remove()
+        chart.selectAll('.divergence').remove()
       });
 
     svg.append("g")
