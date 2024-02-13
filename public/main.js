@@ -50,12 +50,12 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
       .style("background-color", "white")
       .style("border", "solid")
       .style("border-width", "1px")
-      .style("border-radius", "2px")
-      .style("padding", "2px")
+      .style("border-radius", "1px")
+      .style("padding", "1px")
 
     var mouseover = function(e, d) {
       Tooltip
-        .html("The exact value of<br>this cell is: " + d.value)
+        .html(d.value)
         .style("opacity", 1)
       d3.select(this)
         .style("stroke", "black")
