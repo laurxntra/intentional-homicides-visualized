@@ -50,8 +50,8 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
       .style("background-color", "white")
       .style("border", "solid")
       .style("border-width", "1px")
-      .style("border-radius", "1px")
-      .style("padding", "1px")
+      .style("border-radius", "5px")
+      .style("padding", "10px")
 
     var mouseover = function(e, d) {
       Tooltip
