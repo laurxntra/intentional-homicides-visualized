@@ -51,7 +51,7 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
       .style("border", "solid")
       .style("border-width", "1px")
       .style("border-radius", "2px")
-      .style("padding", "3px")
+      .style("padding", "2px")
 
     var mouseover = function() {
       Tooltip
@@ -61,10 +61,10 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
         .style("opacity", 1)
     }
 
-    var mousemove = function(d) {
+    var mousemove = function(e, d) {
       Tooltip
         .html("The exact value of<br>this cell is: " + d.value)
-        .style("left", (d3.mouse(this)[0]+70) + "px")
+        .style("left", (d3.mouse(this)[0]+10) + "px")
         .style("top", (d3.mouse(this)[1]) + "px")
     }
 
