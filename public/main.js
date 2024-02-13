@@ -41,6 +41,33 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
         .domain(category)
         .range(["#89CFF0","#FF69B4" , "#5D3FD3"]);
 
+    var tooltip = d3.select("#chart")
+      .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "white")
+      .style("border", "solid")
+      .style("border-width", "1px")
+      .style("border-radius", "5px")
+      .style("padding", "10px");
+
+    var mouseover = function(d) {
+      var subgroupName = d3.select(this.parentNode).datum().key;
+      var subgroupValue = d.data[subgroupName];
+      tooltip
+          .html("subgroup: " + subgroupName + "<br>" + "Value: " + subgroupValue)
+          .style("opacity", 1)
+    };
+    var mousemove = function(d) {
+      tooltip
+        .style("left", (d3.mouse(this)[0]+90) + "px") 
+        .style("top", (d3.mouse(this)[1]) + "px")
+    };
+    var mouseleave = function(d) {
+      tooltip
+        .style("opacity", 0)
+    };
+
     // Creates the actual group bar chart
     svg.selectAll(".bar")
         .data(data)
@@ -70,19 +97,10 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
         })
         .attr("fill", function(d) {
           return colors(d.key);
-        });
-    var mouseover = function(d) {
-    var subgroupName = d3.select(this.parentNode).datum().key;
-    var subgroupValue = d.data[subgroupName];
-    d3.selectAll(".bar").style("opacity", 0.2)
-    d3.selectAll("."+subgroupName)
-      .style("opacity", 1)
-    }
-
-  var mouseleave = function(d) {
-    d3.selectAll(".bar")
-      .style("opacity",0.8)
-    }
+        })
+      .on("mouseover", mouseover)
+      .on("mousemove", mousemove)
+      .on("mouseleave", mouseleave)});
 
     svg.append("g")
         .attr("transform", "translate(0," + height + ")")
