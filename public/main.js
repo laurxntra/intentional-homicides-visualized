@@ -159,6 +159,6 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
           return d;
         });
 
-}).catch(function(error) {
-    console.error("Error loading CSV file:", error);
-});
+// }).catch(function(error) {
+//     console.error("Error loading CSV file:", error);
+// });
