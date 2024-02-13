@@ -70,7 +70,21 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
         })
         .attr("fill", function(d) {
           return colors(d.key);
-        });
+        })
+        .on('mouseleave', function () {
+        d3.selectAll('.value')
+          .attr('opacity', 1)
+
+        d3.select(this)
+          .transition()
+          .duration(300)
+          .attr('opacity', 1)
+          .attr('x', (a) => xScale(a.language))
+          .attr('width', xScale.bandwidth())
+
+        //chart.selectAll('#limit').remove()
+        //chart.selectAll('.divergence').remove()
+      });
 
     svg.append("g")
         .attr("transform", "translate(0," + height + ")")
