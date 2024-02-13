@@ -55,7 +55,7 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
 
     var mouseover = function(e, d) {
       Tooltip
-        .html(d.value)
+        // .html(d.value)
         .style("opacity", 1)
       d3.select(this)
         .style("stroke", "black")
@@ -64,6 +64,7 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
 
     var mousemove = function() {
       Tooltip
+        .html(d.value)
         .style("left", (d3.mouse(this)[0]+90) + "px")
         .style("top", (d3.mouse(this)[1]) + "px")
     }
