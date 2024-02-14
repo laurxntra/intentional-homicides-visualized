@@ -55,18 +55,22 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
 
     var mouseover = function(e, d) {
       Tooltip
-        .html(d.value)
+        .transition()
+        .duration(200)
         .style("opacity", 1)
+        .html(d.value)
+        .style("left", (e.pageX + 10) + "px")
+        .style("top", (e.pageY - 28) + "px")
       d3.select(this)
         .style("stroke", "black")
         .style("opacity", 1)
     }
 
-    var mousemove = function() {
-      Tooltip
-        .style("left", (d3.pointer(this)[0]+10) + "px")
-        .style("top", (d3.pointer(this)[1]) + "px")
-    }
+    // var mousemove = function(e, d) {
+    //   Tooltip
+    //     .style("left", (d3.pointer(this)[0]+10) + "px")
+    //     .style("top", (d3.pointer(this)[1]) + "px")
+    // }
 
     var mouseleave = function() {
       Tooltip
@@ -107,7 +111,7 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
             return colors(d.key);
           })
         .on("mouseover", mouseover)
-        .on("mousemove", mousemove)
+        // .on("mousemove", mousemove)
         .on("mouseleave", mouseleave)
         
 
