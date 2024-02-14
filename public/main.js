@@ -48,16 +48,14 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
       .style("opacity", 0)
       .attr("class", "tooltip")
       .style("background-color", "white")
-      .style("border", "solid")
-      .style("border-width", "1px")
-      .style("border-radius", "5px")
-      .style("padding", "10px")
+      // .style("border", "solid")
+      // .style("border-width", "1px")
+      // .style("border-radius", "5px")
+      .style("padding", "2px")
 
     var mouseover = function(e, d) {
       Tooltip
         .html(d.value)
-        .style("left", (d3.mouse(this)[0]+90) + "px")
-        .style("top", (d3.mouse(this)[1]+100) + "px")
         .style("opacity", 1)
       d3.select(this)
         .style("stroke", "black")
@@ -67,7 +65,7 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
     var mousemove = function() {
       Tooltip
         .style("left", (d3.mouse(this)[0]+90) + "px")
-        .style("top", (d3.mouse(this)[1]+100) + "px")
+        .style("top", (d3.mouse(this)[1]) + "px")
     }
 
     var mouseleave = function() {
