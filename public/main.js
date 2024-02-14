@@ -37,7 +37,7 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
         .range([height, 0]);
 
     // Distinguishes the bars && colors
-    const category = ["Intentional Homicides Male", "Intentional Homicides Female", "Intentional Homicides"];
+    const category = ["Male Intentional Homicide Rate", "Female Intentional Homicide Rate", "Intentional Homicide Rate"];
     const colors = d3.scaleOrdinal()
         .domain(category)
         .range(["#89CFF0","#FF69B4" , "#5D3FD3"]);
@@ -125,7 +125,7 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
       .attr("text-anchor", "middle")
       .style("font-size", "18px")
       .style("font-weight", "bold")
-      .text("How are intentional homicide rates affected by male and female population(per 100,000) in Europe/Central Asia?");
+      .text("How are intentional homicide rates affected by male and female population (per 100,000) in Europe/Central Asia?");
     
     // label for x-axis
     svg.append("text")
