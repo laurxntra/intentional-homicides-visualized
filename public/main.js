@@ -55,21 +55,17 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
 
     var mouseover = function(e, d) {
       Tooltip
-        .transition()
-        .duration(200)
-        .style("opacity", 1)
         .html(d.value)
+        .style("opacity", 1)
       d3.select(this)
         .style("stroke", "black")
         .style("opacity", 1)
     }
 
-    var mousemove = function(e, d) {
+    var mousemove = function() {
       Tooltip
-        .style("left", (e.pageX + 10) + "px")
-        .style("top", (e.pageY - 28) + "px")
-        // .style("left", (d3.pointer(this)[0]+10) + "px")
-        // .style("top", (d3.pointer(this)[1]) + "px")
+        .style("left", (d3.pointer(this)[0]+10) + "px")
+        .style("top", (d3.pointer(this)[1]) + "px")
     }
 
     var mouseleave = function() {
