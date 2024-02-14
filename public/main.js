@@ -37,7 +37,7 @@ d3.csv("data/ecsData/intentionalHomicides.csv").then(function(data) {
         .range([height, 0]);
 
     // Distinguishes the bars && colors
-    const category = ["Male Intentional Homicide Rate", "Female Intentional Homicide Rate", "Intentional Homicide Rate"];
+    const category = ["Intentional Homicides Male", "Intentional Homicides Female", "Intentional Homicides"];
     const colors = d3.scaleOrdinal()
         .domain(category)
         .range(["#89CFF0","#FF69B4" , "#5D3FD3"]);
